@@ -8,29 +8,24 @@ View Group
 
 {{-- Content --}}
 @section('content')
-<div class="row">
-	<div class="small-8 columns">
-		<h4>{{ $group['name'] }} Group</h4>
-
-		<strong>Permissions:</strong>
-		<ul>
-			@foreach ($group->getPermissions() as $key => $value)
-				<li>{{ ucfirst($key) }}</li>
-			@endforeach
-		</ul>
+<h4>{{ $group['name'] }} Group</h4>
+<div class="well clearfix">
+	<div class="col-md-10">
+	    <strong>Permissions:</strong>
+	    <ul>
+	    	@foreach ($group->getPermissions() as $key => $value)
+	    		<li>{{ ucfirst($key) }}</li>
+	    	@endforeach
+	    </ul>
 	</div>
-
-	<div class="small-4 columns">	
-		<button class="button" onClick="location.href='{{ route('sentinel.groups.edit', array($group->hash)) }}'">Edit Group</button>
-	</div>
-
+	<div class="col-md-2">
+		<a class="btn btn-primary" href="{{ route('sentinel.groups.edit', array($group->hash)) }}">Edit Group</a>
+	</div> 
 </div>
-
-<div class="row">
-	<h4>Group Object</h4>
-	<div class="panel">
-		<pre>{{ var_dump($group) }}</pre>
-	</div>
+<hr />
+<h4>Group Object</h4>
+<div>
+    {{ var_dump($group) }}
 </div>
 
 @stop

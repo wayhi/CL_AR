@@ -7,48 +7,32 @@ Log In
 
 {{-- Content --}}
 @section('content')
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <form method="POST" action="{{ route('sentinel.session.store') }}" accept-charset="UTF-8">
 
-<form method="POST" action="{{ route('sentinel.session.store') }}" accept-charset="UTF-8">
-    <div class="small-6 large-centered columns">
-        <h3 class="form-signin-heading">Sign In</h3>
-        
-        <div class="row">
-            <div class="small-2 columns">
-                <label for="right-label" class="right inline">Email</label>
+            <h2 class="form-signin-heading">Sign In</h2>
+
+            <div class="form-group {{ ($errors->has('email')) ? 'has-error' : '' }}">
+                <input class="form-control" placeholder="Email" autofocus="autofocus" name="email" type="text" value="{{ Input::old('email') }}">
+                {{ ($errors->has('email') ? $errors->first('email') : '') }}
             </div>
-            <div class="small-10 columns {{ ($errors->has('email')) ? 'error' : '' }}">
-                <input placeholder="Email" autofocus="autofocus" name="email" type="text"  value="{{ Input::old('email') }}">
-                {{ ($errors->has('email') ? $errors->first('email', '<small class="error">:message</small>') : '') }}
-            </div>
-        </div>
-            
-        <div class="row">
-            <div class="small-2 columns">
-                <label for="right-label" class="right inline">Password</label>
-            </div>
-            <div class="small-10 columns">
+
+            <div class="form-group {{ ($errors->has('password')) ? 'has-error' : '' }}">
                 <input class="form-control" placeholder="Password" name="password" value="" type="password">
-                {{ ($errors->has('password') ?  $errors->first('password', '<small class="error">:message</small>') : '') }}
+                {{ ($errors->has('password') ?  $errors->first('password') : '') }}
             </div>
-        </div>
-        
-        <div class="row">
-            <div class="small-10 small-offset-2 columns">
-                <input name="rememberMe" value="rememberMe" type="checkbox">
-                <label for="rememberMe">Remember Me</label>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="small-10 small-offset-2 columns">
-                <input name="_token" value="{{ csrf_token() }}" type="hidden">
-                <input class="button primary" value="Sign In" type="submit">
-                <a class="button secondary" href="{{ route('sentinel.forgot.form') }}">Forgot Password</a>
-            </div>
-        </div>
-                
-    </div>
-</form>
 
+            <label class="checkbox">
+                <input name="rememberMe" value="rememberMe" type="checkbox"> Remember Me
+            </label>
+
+            <input name="_token" value="{{ csrf_token() }}" type="hidden">
+            <input class="btn btn-primary" value="Sign In" type="submit">
+            <a class="btn btn-link" href="{{ route('sentinel.forgot.form') }}">Forgot Password</a>
+
+        </form>
+    </div>
+</div>
 
 @stop

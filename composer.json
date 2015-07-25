@@ -7,8 +7,9 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-	"cartalyst/sentinel": "2.0.*",
-        "rydurham/sentinel": "~2.2"        
+	    "cartalyst/sentinel": "2.0.*",
+        "rydurham/sentinel": "~2.2" ,
+        "anahkiasen/former": "4.0.*@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

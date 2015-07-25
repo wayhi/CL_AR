@@ -8,67 +8,44 @@ Create New User
 
 {{-- Content --}}
 @section('content')
-<form method="POST" action="{{ route('sentinel.users.store') }}" accept-charset="UTF-8">
-  <div class="row">
-        <div class="small-6 large-centered columns">
-            
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <form method="POST" action="{{ route('sentinel.users.store') }}" accept-charset="UTF-8">
+
             <h2>Create New User</h2>
 
-            <div class="row">
-                <div class="small-2 columns">
-                    <label for="right-label" class="right inline">Username</label>
-                </div>
-                <div class="small-10 columns {{ ($errors->has('username')) ? 'error' : '' }}">
-                    <input placeholder="Username" name="username" type="text" value="{{ Input::old('username') }}">
-                    {{ ($errors->has('username') ? $errors->first('username', '<small class="error">:message</small>') : '') }}
-                </div>
+            <div class="form-group {{ ($errors->has('username')) ? 'has-error' : '' }}">
+                <input class="form-control" placeholder="Username" name="username" type="text"  value="{{ Input::old('username') }}">
+                {{ ($errors->has('username') ? $errors->first('username') : '') }}
             </div>
 
-            <div class="row">
-                <div class="small-2 columns">
-                    <label for="right-label" class="right inline">E-mail</label>
-                </div>
-                <div class="small-10 columns {{ ($errors->has('email')) ? 'error' : '' }}">
-                    <input placeholder="E-mail" name="email" type="text" value="{{ Input::old('email') }}">
-                    {{ ($errors->has('email') ? $errors->first('email', '<small class="error">:message</small>') : '') }}
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="small-2 columns">
-                    <label for="right-label" class="right inline">Password</label>
-                </div>
-                <div class="small-10 columns">
-                    <input class="form-control" placeholder="Password" name="password" value="" type="password">
-                    {{ ($errors->has('password') ?  $errors->first('password', '<small class="error">:message</small>') : '') }}
-                </div>
+            <div class="form-group {{ ($errors->has('email')) ? 'has-error' : '' }}">
+                <input class="form-control" placeholder="E-mail" name="email" type="text"  value="{{ Input::old('email') }}">
+                {{ ($errors->has('email') ? $errors->first('email') : '') }}
             </div>
 
-            <div class="row">
-                <div class="small-2 columns">
-                    <label for="right-label" class="right inline">Confirm</label>
-                </div>
-                <div class="small-10 columns">
-                    <input class="form-control" placeholder="Confirm Password" name="password_confirmation" value="" type="password">
-                    {{ ($errors->has('password_confirmation') ?  $errors->first('password_confirmation', '<small class="error">:message</small>') : '') }}
-                </div>
+            <div class="form-group {{ ($errors->has('password')) ? 'has-error' : '' }}">
+                <input class="form-control" placeholder="Password" name="password" value="" type="password">
+                {{ ($errors->has('password') ?  $errors->first('password') : '') }}
             </div>
 
-            <div class="row">
-                <div class="small-10 small-offset-2 columns">
-                    <input name="activate" value="activate" type="checkbox">
-                    <label for="activate">Activate</label>
-                </div>
+            <div class="form-group {{ ($errors->has('password_confirmation')) ? 'has-error' : '' }}">
+                <input class="form-control" placeholder="Confirm Password" name="password_confirmation" value="" type="password">
+                {{ ($errors->has('password_confirmation') ?  $errors->first('password_confirmation') : '') }}
             </div>
 
-             <div class="row">
-                <div class="small-10 small-offset-2 columns">
-                    <input name="_token" value="{{ csrf_token() }}" type="hidden">
-                    <input class="button" value="Create" type="submit">
-                </div>
+            <div class="form-group">
+                <label class="checkbox">
+                    <input name="activate" value="activate" type="checkbox"> Activate
+                </label>
             </div>
-                       
-        </div>
-    </div>            
-</form>
+
+            <input name="_token" value="{{ csrf_token() }}" type="hidden">
+            <input class="btn btn-primary" value="Create" type="submit">
+
+        </form>
+    </div>
+</div>
+
+
 @stop

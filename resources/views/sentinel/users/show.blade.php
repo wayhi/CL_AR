@@ -8,20 +8,20 @@ Home
 
 {{-- Content --}}
 @section('content')
-<div class="row">
 
-	<?php
-	    // Determine the edit profile route
-	    if (($user->email == Sentry::getUser()->email)) {
-	        $editAction = route('sentinel.profile.edit');
-	    } else {
-	        $editAction =  action('\\Sentinel\Controllers\UserController@edit', [$user->hash]);
-	    }
-	?>
+    <?php
+        // Determine the edit profile route
+        if (($user->email == Sentry::getUser()->email)) {
+            $editAction = route('sentinel.profile.edit');
+        } else {
+            $editAction =  action('\\Sentinel\Controllers\UserController@edit', [$user->hash]);
+        }
+    ?>
 
 	<h4>Account Profile</h4>
 	
-	    <div class="small-6 columns">
+  	<div class="well clearfix">
+	    <div class="col-md-8">
 		    @if ($user->first_name)
 		    	<p><strong>First Name:</strong> {{ $user->first_name }} </p>
 			@endif
@@ -30,37 +30,33 @@ Home
 			@endif
 		    <p><strong>Email:</strong> {{ $user->email }}</p>
 		    
-			<p>
-				<em>
-					Account created: {{ $user->created_at }} <br />
-					Last Updated: {{ $user->updated_at }}
-				</em>
-			</p>
-			<button class="button" onClick="location.href='{{ $editAction }}'">Edit Profile</button>
 		</div>
-
-		<div class="small-6 columns">
-			<h4>Group Memberships:</h4>
-			<?php $userGroups = $user->getGroups(); ?>
-		    <ul>
-		    	@if (count($userGroups) >= 1)
-			    	@foreach ($userGroups as $group)
-						<li>{{ $group['name'] }}</li>
-					@endforeach
-				@else 
-					<li>No Group Memberships.</li>
-				@endif
-		    </ul>
-
+		<div class="col-md-4">
+			<p><em>Account created: {{ $user->created_at }}</em></p>
+			<p><em>Last Updated: {{ $user->updated_at }}</em></p>
+			<button class="btn btn-primary" onClick="location.href='{{ $editAction }}'">Edit Profile</button>
 		</div>
-</div>
+	</div>
 
-<div class="row">
+	<h4>Group Memberships:</h4>
+	<?php $userGroups = $user->getGroups(); ?>
+	<div class="well">
+	    <ul>
+	    	@if (count($userGroups) >= 1)
+		    	@foreach ($userGroups as $group)
+					<li>{{ $group['name'] }}</li>
+				@endforeach
+			@else 
+				<li>No Group Memberships.</li>
+			@endif
+	    </ul>
+	</div>
+	
+	<hr />
 
 	<h4>User Object</h4>
-	<div class="panel">
-		<pre>{{ var_dump($user) }}</pre>
+	<div>
+		<p>{{ var_dump($user) }}</p>
 	</div>
-</div>
 
 @stop
