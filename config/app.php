@@ -108,7 +108,7 @@ return [
     |
     */
 
-    'providers' => [
+    'providers' => array(
 
         /*
          * Laravel Framework Service Providers...
@@ -145,9 +145,10 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /*---------*/
-        Sentinel\SentinelServiceProvider::class, 
-
-    ],
+        Sentinel\SentinelServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Former\FormerServiceProvider::class,
+    ),
 
     /*
     |--------------------------------------------------------------------------
@@ -194,6 +195,7 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+        'Former'    => Former\Facades\Former::class,
 
     ],
 

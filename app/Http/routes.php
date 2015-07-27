@@ -17,5 +17,7 @@
 
 Route::get('/', array('as' => 'home', function()
 {
-    return View::make('welcome');
+    return View::make('main.main');
 }));
+
+Route::Resource('project','ProjectController');
